@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agentblazer Club Inauguration</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="scripts.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&display=swap" rel="stylesheet">
+    <style>
+        /* New & Unique Design Styles */
+        :root {
+            --primary-color: #5d5dff; /* A new, vibrant blue-purple */
+            --secondary-color: #ff3366; /* A dynamic red-pink */
+            --accent-color: #2fe084; /* A bright, energetic green */
+            --background-dark: #121212; /* Deep dark background */
+            --text-light: #e0e0e0;
+            --card-dark: #1e1e1e;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--background-dark);
+            color: var(--text-light);
+            margin: 0;
+            padding: 0;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Header with Gradient and Overlay */
+        header {
+            background: var(--background-dark);
+            text-align: center;
+            padding: 6rem 0 4rem;
+            position: relative;
+            overflow: hidden;
+            border-bottom: 2px solid var(--secondary-color);
+        }
+        
+        .header-bg-effect {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            opacity: 0.15;
+            z-index: 1;
+            transform: skewY(-2deg);
+        }
+
+        header > .container {
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-logos {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .agentblazer-logo {
+            width: 8rem;
+            height: auto;
+            filter: drop-shadow(0 0 10px rgba(93, 93, 255, 0.5));
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .club-text {
+            font-family: 'Caveat', cursive;
+            font-size: 3rem;
+            color: var(--accent-color);
+            line-height: 1;
+            margin-top: -0.5rem;
+        }
+        
+        .inauguration-title {
+            font-size: 2.8rem;
+            font-weight: 900;
+            color: var(--text-light);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-top: 1rem;
+            text-shadow: 0 0 5px var(--secondary-color);
+        }
+
+        .header-text-large {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.7);
+            margin-top: 0.5rem;
+        }
+
+        .stats-grid {
+            margin-top: 4rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-card {
+            background-color: var(--card-dark);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid var(--primary-color);
+        }
+        .stat-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 900;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+        .stat-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        /* Main Sections */
+        main section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 5rem 0;
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 900;
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--primary-color);
+            text-transform: uppercase;
+        }
+
+        .grid-3-cols {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .card {
+            background-color: var(--card-dark);
+            color: var(--text-light);
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            transform: scale(1.03);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+        }
+        
+        /* Speaker Section */
+        #speakers {
+            background: linear-gradient(to bottom, var(--background-dark), #1a1a1a);
+        }
+        .speaker-card {
+            padding: 0;
+            overflow: hidden;
+            position: relative;
+            background-color: transparent;
+            border: 1px solid var(--secondary-color);
+        }
+        .speaker-image {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            filter: grayscale(80%);
+            transition: filter 0.5s ease, transform 0.5s ease;
+        }
+        .speaker-card:hover .speaker-image {
+            filter: grayscale(0%);
+            transform: scale(1.1);
+        }
+        .speaker-content {
+            padding: 1.5rem;
+            background: var(--card-dark);
+            border-top: 5px solid var(--secondary-color);
+        }
+        .speaker-name {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: var(--accent-color);
+            margin: 0;
+        }
+        .speaker-title {
+            font-size: 1rem;
+            color: var(--primary-color);
+            margin: 0.5rem 0 1rem;
+        }
+        .speaker-bio {
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        .linkedin-link {
+            color: var(--secondary-color);
+            font-weight: 700;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            margin-top: 1rem;
+            transition: color 0.3s ease;
+        }
+        .linkedin-link:hover {
+            color: var(--accent-color);
+            text-decoration: underline;
+        }
+
+        /* Timeline Section */
+        #agenda {
+            background-color: #2b2b2b;
+        }
+        .timeline { position: relative; max-width: 1000px; margin: 0 auto; }
+        .timeline::after {
+            background-color: var(--primary-color);
+        }
+        .timeline-container::after {
+            background-color: var(--secondary-color);
+            border-color: var(--primary-color);
+        }
+        .timeline-content {
+            background-color: var(--card-dark);
+            color: var(--text-light);
+            border: 1px solid var(--primary-color);
+        }
+        .timeline-content h3 {
+            color: var(--accent-color);
+        }
+        .timeline-content p {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Chart Sections */
+        #responsible-ai-pillars, #sessions, #impact {
+            min-height: auto;
+            padding: 8rem 0;
+        }
+
+        .chart-container {
+            height: 400px;
+        }
+        
+        /* Spotlight Section */
+        #spotlight {
+            background-color: var(--card-dark);
+        }
+        #spotlight .card {
+            background-color: var(--background-dark);
+            border: 2px solid var(--secondary-color);
+        }
+        .trophy-emoji { font-size: 6rem; }
+        .trophy-number { font-size: 4rem; color: var(--accent-color); }
+        .trophy-label { font-size: 1.5rem; color: var(--text-light); }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-bg);
+            color: white;
+            text-align: center;
+            padding: 3rem 0;
+            border-top: 2px solid var(--primary-color);
+        }
+        .member-button {
+            background-color: var(--secondary-color);
+            color: white;
+            font-weight: 700;
+            padding: 0.75rem 2.5rem;
+            border-radius: 50px;
+            font-size: 1.25rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .member-button:hover {
+            background-color: var(--accent-color);
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-bg-effect"></div>
+        <div class="container">
+            <div class="header-logos">
+                <img src="Agentblazer-logo.png" alt="Agentblazer Logo" class="agentblazer-logo">
+                <span class="club-text">club</span>
+            </div>
+            
+            <p class="header-text-large">An Initiative by The Office of Industry Alliances</p>
+            <p class="header-text-large">In collaboration with Salesforce Global Workforce Development Team</p>
+            <p class="inauguration-title">Inauguration Ceremony</p>
+            <p class="header-text-large">August 5, 2025</p>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <p class="stat-number">150+</p>
+                    <p class="stat-label">Expected Attendees</p>
+                </div>
+                <div class="stat-card">
+                    <p class="stat-number">8</p>
+                    <p class="stat-label">Keynote Sessions & Activities</p>
+                </div>
+                <div class="stat-card">
+                    <p class="stat-number">1</p>
+                    <p class="stat-label">Pioneering Community</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section id="speakers">
+            <div class="container">
+                <h2 class="section-title">Meet Our Mentors</h2>
+                <div id="speakers-container" class="grid-3-cols">
+                    </div>
+            </div>
+        </section>
+
+        <section id="vision">
+            <div class="container">
+                <h2 class="section-title">Our Vision & Mission</h2>
+                <p class="section-description" style="color: rgba(255, 255, 255, 0.7);">
+                    The official launch of the Agentblazer Club aims to build a vibrant community centered around Agentforce and Responsible AI, inspiring students to pursue groundbreaking careers and fostering connections with industry leaders.
+                </p>
+                <div class="grid-3-cols">
+                    <div class="card">
+                        <span class="card-icon">🚀</span>
+                        <h3 class="card-title">Official Launch</h3>
+                        <p class="card-text">Formally introduce the club to the university community and our industry partners.</p>
+                    </div>
+                    <div class="card">
+                        <span class="card-icon">💡</span>
+                        <h3 class="card-title">Inspire & Motivate</h3>
+                        <p class="card-text">Share insights on career opportunities in Agentforce and Responsible AI.</p>
+                    </div>
+                    <div class="card">
+                        <span class="card-icon">🏆</span>
+                        <h3 class="card-title">Showcase Talent</h3>
+                        <p class="card-text">Highlight student achievements through project presentations and awards.</p>
+                    </div>
+                    <div class="card">
+                        <span class="card-icon">🤝</span>
+                        <h3 class="card-title">Facilitate Networking</h3>
+                        <p class="card-text">Connect students with faculty, club leads, and industry professionals.</p>
+                    </div>
+                    <div class="card">
+                        <span class="card-icon">🗺️</span>
+                        <h3 class="card-title">Outline Initiatives</h3>
+                        <p class="card-text">Present the club's roadmap, including summer training and future projects.</p>
+                    </div>
+                    <div class="card">
+                        <span class="card-icon">🧠</span>
+                        <h3 class="card-title">Generate Awareness</h3>
+                        <p class="card-text">Educate attendees on the club's mission, vision, and planned activities.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="agenda">
+            <h2 class="section-title">The Inaugural Agenda</h2>
+            <div class="timeline">
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <h3>09:15 AM</h3>
+                        <p>Welcome</p>
+                    </div>
+                </div>
+                <div class="timeline-container right">
+                    <div class="timeline-content">
+                        <h3>09:30 AM</h3>
+                        <p>Coffee & Networking</p>
+                    </div>
+                </div>
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <h3>10:00 AM</h3>
+                        <p>Welcome Speech by Dean, School of Engineering</p>
+                    </div>
+                </div>
+                <div class="timeline-container right">
+                    <div class="timeline-content">
+                        <h3>10:10 AM</h3>
+                        <p>Welcome & Inaugural Speech</p>
+                    </div>
+                </div>
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <h3>10:20 AM</h3>
+                        <p>Salesforce Training Overview during Summer Break</p>
+                    </div>
+                </div>
+                <div class="timeline-container right">
+                    <div class="timeline-content">
+                        <h3>10:30 AM</h3>
+                        <p>Top Project Presentations</p>
+                    </div>
+                </div>
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <h3>11:00 AM</h3>
+                        <p>Special Achievement Awards</p>
+                    </div>
+                </div>
+                <div class="timeline-container right">
+                    <div class="timeline-content">
+                        <h3>11:15 AM</h3>
+                        <p>Introducing Student Leads of the Club & Plan Ahead</p>
+                    </div>
+                </div>
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <h3>11:30 AM</h3>
+                        <p>Expert Session by Guest Speaker</p>
+                    </div>
+                </div>
+                <div class="timeline-container right">
+                    <div class="timeline-content">
+                        <h3>12:15 PM</h3>
+                        <p>Agentforce Project Expo & Networking</p>
+                    </div>
+                </div>
+                <div class="timeline-container left">
+                    <div class="timeline-content">
+                        <h3>01:20 PM</h3>
+                        <p>Lunch</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="club-stats">
+            <div class="container">
+                <h2 class="section-title">Club Impact & Metrics</h2>
+                <p class="section-description" style="color: rgba(255, 255, 255, 0.7);">
+                    Our club is built on a foundation of engagement and growth. These metrics highlight our commitment to providing valuable opportunities and fostering a thriving community.
+                </p>
+                <div class="grid-3-cols" style="align-items: center;">
+                    <div class="card">
+                        <h3>Project Submissions</h3>
+                        <p>Total projects submitted by our members this year, showcasing their creativity and skill in Salesforce and AI.</p>
+                        <div class="chart-container" style="margin-top: 2rem;">
+                            <canvas id="submissionsChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Certification Progress</h3>
+                        <p>A look at how our members are advancing their careers through key industry certifications.</p>
+                        <div class="chart-container" style="margin-top: 2rem;">
+                            <canvas id="certificationsChart"></canvas>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <h3>Event Attendance</h3>
+                        <p>A representation of the high level of participation in our workshops and guest lectures.</p>
+                        <div class="chart-container" style="margin-top: 2rem;">
+                            <canvas id="attendanceChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+    </main>
+
+    <footer>
+        <h2>Ready to Innovate?</h2>
+        <p>Join the Agentblazer Club and be part of the future of AI.</p>
+        <a href="https://forms.gle/Lk92B7SRBnPhFho68" target="_blank" class="member-button">
+            Become a Member
+        </a>
+    </footer>
+
+</body>
+</html>
